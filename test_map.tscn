@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=12 format=4 uid="uid://5coeftq8y7uo"]
 
 [ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
+[ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
 [ext_resource type="Texture2D" uid="uid://dd8xg8833lgbx" path="res://awdor_mountains.png" id="2_s02eq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8dge"]
@@ -43,12 +44,18 @@ texture_region_size = Vector2i(24, 24)
 2:0/0 = 0
 3:0/0 = 0
 0:1/0 = 0
+0:1/0/custom_data_0 = true
 1:1/0 = 0
+1:1/0/custom_data_0 = true
 2:1/0 = 0
+2:1/0/custom_data_0 = true
 3:1/0 = 0
+3:1/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_yobqo"]
 tile_size = Vector2i(24, 24)
+custom_data_layer_0/name = "Obstacle"
+custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_5354r")
 pattern_0 = SubResource("TileMapPattern_r0pc2")
 pattern_1 = SubResource("TileMapPattern_ssfg1")
@@ -58,6 +65,7 @@ pattern_3 = SubResource("TileMapPattern_bu3ac")
 [node name="test_map" type="Node2D"]
 
 [node name="map_holder" type="Node2D" parent="."]
+script = ExtResource("1_s02eq")
 
 [node name="base_layer" type="TileMapLayer" parent="map_holder"]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAABAAAAAAABAP3/AAABAAAAAAADAP//AAABAAAAAAD/////AAABAAEAAAAAAP3/AAACAAEAAAACAP7/AAACAAEAAAAEAP3/AAACAAEAAAAEAP7/AAADAAEAAAAEAP//AAADAAEAAAADAP3/AAAEAAEAAAABAP//AAABAAAAAAD///3/AAABAAAAAAA=")
@@ -66,3 +74,7 @@ tile_set = SubResource("TileSet_qgarv")
 [node name="terrain_layer" type="TileMapLayer" parent="map_holder"]
 tile_map_data = PackedByteArray("AAAAAP7/AAAAAAAAAAAAAP//AAAAAAEAAAABAP7/AAABAAAAAAABAP//AAABAAEAAAAEAP7/AAADAAAAAAAEAP//AAADAAEAAAACAP7/AAACAAAAAAACAP//AAACAAEAAAA=")
 tile_set = SubResource("TileSet_yobqo")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(60, -50)
+zoom = Vector2(3, 3)
