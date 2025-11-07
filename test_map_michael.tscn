@@ -1,11 +1,16 @@
-[gd_scene load_steps=12 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=18 format=4 uid="uid://cp7tyhytah5wq"]
 
-[ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
-[ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
-[ext_resource type="Texture2D" uid="uid://dd8xg8833lgbx" path="res://awdor_mountains.png" id="2_s02eq"]
+[ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_2a87f"]
+[ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_56rcf"]
+[ext_resource type="Texture2D" uid="uid://dd8xg8833lgbx" path="res://awdor_mountains.png" id="2_fypvg"]
+[ext_resource type="Script" uid="uid://bepxgqd6o6d2b" path="res://enemy.gd" id="3_t5k0n"]
+[ext_resource type="Texture2D" uid="uid://0t4rwr1aaqpc" path="res://Sprites/Witch_run-1.png" id="4_56rcf"]
+[ext_resource type="Texture2D" uid="uid://b8r33gri3tt5h" path="res://Sprites/Witch_run-2.png" id="5_1bb2f"]
+[ext_resource type="Texture2D" uid="uid://dfnnddfsh5jl4" path="res://Sprites/Witch_run-3.png" id="6_5pb6j"]
+[ext_resource type="Texture2D" uid="uid://dvkihaj1k0dv" path="res://Sprites/Witch_run-4.png" id="7_pwewy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8dge"]
-texture = ExtResource("1_4wuf8")
+texture = ExtResource("1_2a87f")
 separation = Vector2i(1, 1)
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
@@ -36,7 +41,7 @@ tile_data = PackedInt32Array(0, 131072, 0, 65536, 131072, 1)
 tile_data = PackedInt32Array(0, 196608, 0, 65536, 196608, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_5354r"]
-texture = ExtResource("2_s02eq")
+texture = ExtResource("2_fypvg")
 separation = Vector2i(1, 0)
 texture_region_size = Vector2i(24, 24)
 0:0/0 = 0
@@ -44,28 +49,50 @@ texture_region_size = Vector2i(24, 24)
 2:0/0 = 0
 3:0/0 = 0
 0:1/0 = 0
-0:1/0/custom_data_0 = true
 1:1/0 = 0
-1:1/0/custom_data_0 = true
 2:1/0 = 0
-2:1/0/custom_data_0 = true
 3:1/0 = 0
-3:1/0/custom_data_0 = true
 
 [sub_resource type="TileSet" id="TileSet_yobqo"]
 tile_size = Vector2i(24, 24)
-custom_data_layer_0/name = "Obstacle"
-custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_5354r")
 pattern_0 = SubResource("TileMapPattern_r0pc2")
 pattern_1 = SubResource("TileMapPattern_ssfg1")
 pattern_2 = SubResource("TileMapPattern_gqtbx")
 pattern_3 = SubResource("TileMapPattern_bu3ac")
 
-[node name="test_map2" type="Node2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_32xgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_1bb2f")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_56rcf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1bb2f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5pb6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_pwewy")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="test_map_michael" type="Node2D"]
 
 [node name="map_holder" type="Node2D" parent="."]
-script = ExtResource("1_s02eq")
+script = ExtResource("1_56rcf")
 
 [node name="base_layer" type="TileMapLayer" parent="map_holder"]
 tile_map_data = PackedByteArray("AAAAAP//AAAAAAAAAAABAP7/AAAAAAAAAAACAP3/AAAAAAAAAAACAP//AAAAAAAAAAADAP7/AAAAAAAAAAD///7/AAAAAAAAAAAAAP7/AAABAAAAAAABAP3/AAABAAAAAAADAP//AAABAAAAAAD/////AAABAAEAAAAAAP3/AAACAAEAAAACAP7/AAACAAEAAAAEAP3/AAACAAEAAAAEAP7/AAADAAEAAAAEAP//AAADAAEAAAADAP3/AAAEAAEAAAABAP//AAABAAAAAAD///3/AAABAAAAAAA=")
@@ -75,6 +102,15 @@ tile_set = SubResource("TileSet_qgarv")
 tile_map_data = PackedByteArray("AAAAAP7/AAAAAAAAAAAAAP//AAAAAAEAAAABAP7/AAABAAAAAAABAP//AAABAAEAAAAEAP7/AAADAAAAAAAEAP//AAADAAEAAAACAP7/AAACAAAAAAACAP//AAACAAEAAAA=")
 tile_set = SubResource("TileSet_yobqo")
 
+[node name="CharacterBody2D" type="Marker2D" parent="."]
+position = Vector2(-13, -14)
+script = ExtResource("3_t5k0n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_32xgc")
+animation = &"idle"
+
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(60, -50)
-zoom = Vector2(3, 3)
+position = Vector2(56, -27)
+zoom = Vector2(5, 5)
