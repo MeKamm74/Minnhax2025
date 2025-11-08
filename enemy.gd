@@ -3,21 +3,23 @@ extends Node2D
 enum State { IDLE, FOLLOW }
 
 const MASS = 10.0
-const ARRIVE_DISTANCE = 1.0
+const ARRIVE_DISTANCE = 7.0
 
-@export var speed: float = 100.0
+@export var speed: float = 200.0
 
 var _state = State.IDLE
 var _velocity = Vector2()
 
 @onready var _tile_map = $"../map_holder"
+@onready var _goal_marker = $"../GoalMarker"
 
-var _click_position = Vector2()
+var _goal_position = Vector2()
 var _path = PackedVector2Array()
 var _next_point = Vector2()
 
 func _ready():
-	_change_state(State.IDLE)
+	_goal_position = _goal_marker.position
+	_change_state(State.FOLLOW)
 
 
 func _process(_delta):
@@ -33,15 +35,15 @@ func _process(_delta):
 			return
 		_next_point = _path[0]
 
-
-func _unhandled_input(event):
-	_click_position = get_global_mouse_position()
-	if _tile_map.is_point_walkable(_click_position):
-		if event.is_action_pressed(&"teleport_to", false, true):
-			_change_state(State.IDLE)
-			global_position = _tile_map.round_local_position(_click_position)
-		elif event.is_action_pressed(&"move_to"):
-			_change_state(State.FOLLOW)
+# function for "go where I click"
+#func _unhandled_input(event):
+	#_click_position = get_global_mouse_position()
+	#if _tile_map.is_point_walkable(_click_position):
+		#if event.is_action_pressed(&"teleport_to", false, true):
+			#_change_state(State.IDLE)
+			#global_position = _tile_map.round_local_position(_click_position)
+		#elif event.is_action_pressed(&"move_to"):
+			#_change_state(State.FOLLOW)
 
 
 func _move_to(local_position):
@@ -61,7 +63,7 @@ func _change_state(new_state):
 	elif new_state == State.FOLLOW:
 		$AnimatedSprite2D.animation = "run"
 		$AnimatedSprite2D.play()
-		_path = _tile_map.get_path_map(position, _click_position)
+		_path = _tile_map.get_path_map(position, _goal_position)
 		print(_path)
 		if _path.size() < 1:
 			_change_state(State.IDLE)
