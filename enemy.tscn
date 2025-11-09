@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://s7xqqm5p28g6"]
+
+[ext_resource type="Script" uid="uid://bepxgqd6o6d2b" path="res://enemy.gd" id="1_epg4t"]
+[ext_resource type="Texture2D" uid="uid://b8r33gri3tt5h" path="res://Sprites/Witch_run-2.png" id="2_3yqyl"]
+[ext_resource type="Texture2D" uid="uid://0t4rwr1aaqpc" path="res://Sprites/Witch_run-1.png" id="3_wujgv"]
+[ext_resource type="Texture2D" uid="uid://dfnnddfsh5jl4" path="res://Sprites/Witch_run-3.png" id="4_hb8ge"]
+[ext_resource type="Texture2D" uid="uid://dvkihaj1k0dv" path="res://Sprites/Witch_run-4.png" id="5_e1ltt"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_32xgc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3yqyl")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_wujgv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3yqyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hb8ge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_e1ltt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}]
+
+[node name="Enemy" type="Marker2D"]
+script = ExtResource("1_epg4t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_32xgc")
+animation = &"run"

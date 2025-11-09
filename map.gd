@@ -35,6 +35,18 @@ func _ready():
 
 
 func get_path_map(start_coords, end_coords):
+	var start_point = base_layer.local_to_map(start_coords)
+	var end_point = base_layer.local_to_map(end_coords)
 	# Example of how to use the path
-	var path = _astar.get_point_path(start_coords, end_coords)
+	var path = _astar.get_point_path(start_point, end_point)
 	return path
+
+func round_local_position(local_position):
+	return base_layer.map_to_local(base_layer.local_to_map(local_position))
+
+
+func is_point_walkable(local_position):
+	var map_position = base_layer.local_to_map(local_position)
+	if _astar.is_in_boundsv(map_position):
+		return not _astar.is_point_solid(map_position)
+	return false
