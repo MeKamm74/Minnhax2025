@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var base_layer: TileMapLayer = $base_layer
 @onready var terrain_layer: TileMapLayer = $terrain_layer
+@onready var building_layer: TileMapLayer = $building_layer
 
 var _astar = AStarGrid2D.new()
 var tile_size = Vector2i(24, 24)
@@ -25,13 +26,28 @@ func _ready():
 	_astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	_astar.update()
 	
+	# set obstacles as solid from the TERRAIN LAYER
 	for i in range(_astar.region.position.x, _astar.region.end.x):
 		for j in range(_astar.region.position.y, _astar.region.end.y):
 			var pos = Vector2i(i, j)
 			var cell_data = terrain_layer.get_cell_tile_data(pos)
 			if cell_data && cell_data.get_custom_data("Obstacle"):
 				_astar.set_point_solid(pos)
-				print("Point: " + str(pos.x) + ", " + str(pos.y) + " is a mountain base")
+				print("Point: " + str(pos.x) + ", " + str(pos.y) + " is an obstacle")
+				
+	# check which tiles are buildings from the BUILDING LAYER
+	for i in range(_astar.region.position.x, _astar.region.end.x):
+		for j in range(_astar.region.position.y, _astar.region.end.y):
+			var pos = Vector2i(i, j)
+			var cell_data = building_layer.get_cell_tile_data(pos)
+			if cell_data && cell_data.get_custom_data("Base"):
+				#_astar.set_point_solid(pos)
+				# maybe save these locally for spawners? We don't want them solid or units can't walk on them
+				print("Point: " + str(pos.x) + ", " + str(pos.y) + " is a base")
+			if cell_data && cell_data.get_custom_data("City"):
+				#_astar.set_point_solid(pos)
+				# maybe save these locally for spawners? We don't want them solid or units can't walk on them
+				print("Point: " + str(pos.x) + ", " + str(pos.y) + " is a city")
 
 
 func get_path_map(start_coords, end_coords):
