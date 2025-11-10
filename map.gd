@@ -33,6 +33,24 @@ func _ready():
 				_astar.set_point_solid(pos)
 				print("Point: " + str(pos.x) + ", " + str(pos.y) + " is a mountain base")
 
+func _unhandled_input(event: InputEvent) -> void:
+	if (event.is_action_pressed("create_tower")):
+		print("CLICK")
+		print(event)
+		var click_position = get_global_mouse_position()
+		print(click_position)
+		var click_coords = round_local_position(click_position)
+		var map_coords = base_layer.local_to_map(click_coords)
+		print(map_coords)
+		base_layer.set_cell(map_coords, 0, Vector2i(2, 1), 0)
+	
+	#if _tile_map.is_point_walkable(_click_position):
+		#if event.is_action_pressed(&"teleport_to", false, true):
+			#_change_state(State.IDLE)
+			#global_position = _tile_map.round_local_position(_click_position)
+		#elif event.is_action_pressed(&"move_to"):
+			#_change_state(State.FOLLOW)
+
 
 func get_path_map(start_coords, end_coords):
 	var start_point = base_layer.local_to_map(start_coords)
