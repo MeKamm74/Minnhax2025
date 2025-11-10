@@ -53,12 +53,8 @@ func _ready():
 				
 	spawn_enemy()
 
-
 func get_path_map(start_coords, end_coords):
-	var start_point = base_layer.local_to_map(start_coords)
-	var end_point = base_layer.local_to_map(end_coords)
-	# Example of how to use the path
-	var path = _astar.get_point_path(start_point, end_point)
+	var path = _astar.get_point_path(start_coords, end_coords)
 	return path
 
 func get_base_coords():
