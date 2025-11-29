@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0t4rwr1aaqpc"
-path="res://.godot/imported/Witch_run-1.png-3abe0ee052fde17fda8918fa90ee0a17.ctex"
+uid="uid://dngfeo1w2ss6a"
+path="res://.godot/imported/Buggo-2.png-9c807c873343473506464ff5976aeebd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Witch_run-1.png"
-dest_files=["res://.godot/imported/Witch_run-1.png-3abe0ee052fde17fda8918fa90ee0a17.ctex"]
+source_file="res://Sprites/buggo1_png/Buggo-2.png"
+dest_files=["res://.godot/imported/Buggo-2.png-9c807c873343473506464ff5976aeebd.ctex"]
 
 [params]
 

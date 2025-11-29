@@ -71,6 +71,7 @@ func spawn_enemy() -> void:
 		#enemy's ready function is called after add_child
 		var spawner_pos = building_layer.map_to_local(spawner_coords[0])
 		add_child(new_enemy)
+		new_enemy.add_to_group("enemies")
 		new_enemy.global_position = spawner_pos
 		new_enemy.set_path_to_base(get_enemy_path(spawner_pos))
 

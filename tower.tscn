@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1h1rhrb4vxif"]
+
+[ext_resource type="Script" uid="uid://dvbo8l2xkeimt" path="res://tower.gd" id="1_vedim"]
+[ext_resource type="Texture2D" uid="uid://b0bcyt8klcief" path="res://Sprites/Tower.png" id="2_vedim"]
+
+[node name="Tower" type="Node2D"]
+script = ExtResource("1_vedim")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_vedim")
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
