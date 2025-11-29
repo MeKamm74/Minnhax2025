@@ -6,7 +6,9 @@ extends Node2D
 @onready var building_layer: TileMapLayer = $building_layer
 
 @export var enemy_scene: PackedScene
+@export var max_towers = 3
 
+var current_towers = 0
 var Tower = preload("res://tower.tscn")
 var _astar = AStarGrid2D.new()
 var tile_size = Vector2i(24, 24)
@@ -86,7 +88,8 @@ func is_point_walkable(local_position):
 	return false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if(event.is_action_pressed("create_tower")):
+	if(event.is_action_pressed("create_tower") and current_towers < max_towers):
+		
 		#get rounded position
 		var clickPosition = get_global_mouse_position()
 		var roundedPosition = round_local_position(clickPosition)
@@ -97,3 +100,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		var newTower = Tower.instantiate()
 		add_child(newTower)
 		newTower.global_position = roundedPosition
+		current_towers += 1
