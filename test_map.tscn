@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=22 format=4 uid="uid://5coeftq8y7uo"]
 
 [ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
 [ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cidw21sfbn6om" path="res://awdor_base.png" id="4_t8dge"]
 [ext_resource type="Texture2D" uid="uid://4t355ggvpvqo" path="res://awdor_city.png" id="5_qgarv"]
 [ext_resource type="PackedScene" uid="uid://bgnpjjtap6jfa" path="res://test_map_assets/enemy.tscn" id="6_r0pc2"]
-[ext_resource type="PackedScene" uid="uid://c1h1rhrb4vxif" path="res://tower.tscn" id="7_ssfg1"]
+[ext_resource type="PackedScene" uid="uid://defiek2tefue8" path="res://game_over_menu.tscn" id="8_bu3ac"]
 [ext_resource type="PackedScene" uid="uid://bwk65i23xc5ad" path="res://pause_menu.tscn" id="8_gqtbx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8dge"]
@@ -102,6 +102,8 @@ sources/2 = SubResource("TileSetAtlasSource_qgarv")
 sources/3 = SubResource("TileSetAtlasSource_yobqo")
 pattern_0 = SubResource("TileMapPattern_t8dge")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ssfg1"]
+
 [node name="test_map" type="Node2D"]
 
 [node name="map_holder" type="Node2D" parent="."]
@@ -131,9 +133,16 @@ autostart = true
 position = Vector2(60, -50)
 zoom = Vector2(3, 3)
 
-[node name="Tower" parent="." instance=ExtResource("7_ssfg1")]
-position = Vector2(204, -44)
-
 [node name="PauseMenu" parent="." instance=ExtResource("8_gqtbx")]
 
+[node name="GameOverTrigger" type="Area2D" parent="."]
+position = Vector2(84, -12)
+scale = Vector2(0.66252536, 0.64901793)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameOverTrigger"]
+shape = SubResource("RectangleShape2D_ssfg1")
+
+[node name="GameOverMenu" parent="." instance=ExtResource("8_bu3ac")]
+
 [connection signal="timeout" from="map_holder/SpawnTimer" to="map_holder" method="_on_spawn_timer_timeout"]
+[connection signal="area_entered" from="GameOverTrigger" to="map_holder" method="_on_game_over_trigger_area_entered"]

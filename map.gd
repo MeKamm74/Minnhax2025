@@ -121,3 +121,8 @@ func _on_enemy_killed() -> void:
 	if kills % 5 == 0:
 		max_towers += 1
 		spawnTimer.wait_time -= 0.5
+
+
+func _on_game_over_trigger_area_entered(area: Area2D) -> void:
+	if(area.is_in_group("enemyArea")):
+		Globals.gameOver.emit()
