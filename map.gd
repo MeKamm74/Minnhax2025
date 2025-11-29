@@ -7,6 +7,7 @@ extends Node2D
 
 @export var enemy_scene: PackedScene
 
+var Tower = preload("res://tower.tscn")
 var _astar = AStarGrid2D.new()
 var tile_size = Vector2i(24, 24)
 var base_coords: Vector2i
@@ -83,3 +84,16 @@ func is_point_walkable(local_position):
 	if _astar.is_in_boundsv(map_position):
 		return not _astar.is_point_solid(map_position)
 	return false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if(event.is_action_pressed("create_tower")):
+		#get rounded position
+		var clickPosition = get_global_mouse_position()
+		var roundedPosition = round_local_position(clickPosition)
+		
+		#todo: Add an terrain block to the map position, so enemies are blocked by towers
+		
+		#spawn a tower
+		var newTower = Tower.instantiate()
+		add_child(newTower)
+		newTower.global_position = roundedPosition
