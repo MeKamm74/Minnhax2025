@@ -28,7 +28,7 @@ horizontal_alignment = 1
 
 [node name="EnemiesKilledLabel" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Enemies Killed: "
+text = "Enemies Killed: 0"
 horizontal_alignment = 1
 
 [node name="MainMenuButton" type="Button" parent="PanelContainer/VBoxContainer"]
