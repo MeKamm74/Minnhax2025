@@ -1,10 +1,12 @@
-[gd_scene load_steps=26 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=30 format=4 uid="uid://5coeftq8y7uo"]
 
 [ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
 [ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
 [ext_resource type="Texture2D" uid="uid://dd8xg8833lgbx" path="res://awdor_mountains.png" id="2_s02eq"]
 [ext_resource type="Texture2D" uid="uid://cidw21sfbn6om" path="res://awdor_base.png" id="4_t8dge"]
 [ext_resource type="Texture2D" uid="uid://4t355ggvpvqo" path="res://awdor_city.png" id="5_qgarv"]
+[ext_resource type="Texture2D" uid="uid://2f5wg0hptcb4" path="res://Sprites/SpawnCave.png" id="5_yobqo"]
+[ext_resource type="Texture2D" uid="uid://bj6kji8hyfwnw" path="res://Sprites/jeffmmax1_png/JeffmMax-2.png" id="6_dj26u"]
 [ext_resource type="PackedScene" uid="uid://bgnpjjtap6jfa" path="res://test_map_assets/enemy.tscn" id="6_r0pc2"]
 [ext_resource type="PackedScene" uid="uid://defiek2tefue8" path="res://game_over_menu.tscn" id="8_bu3ac"]
 [ext_resource type="PackedScene" uid="uid://bwk65i23xc5ad" path="res://pause_menu.tscn" id="8_gqtbx"]
@@ -71,6 +73,18 @@ pattern_3 = SubResource("TileMapPattern_bu3ac")
 [sub_resource type="TileMapPattern" id="TileMapPattern_t8dge"]
 tile_data = PackedInt32Array(0, 2, 0, 65536, 2, 1)
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wgsg"]
+texture = ExtResource("5_yobqo")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+0:0/0/custom_data_1 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ihcqn"]
+texture = ExtResource("6_dj26u")
+texture_region_size = Vector2i(24, 24)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qgarv"]
 texture = ExtResource("4_t8dge")
 texture_region_size = Vector2i(24, 24)
@@ -101,6 +115,8 @@ custom_data_layer_1/name = "City"
 custom_data_layer_1/type = 1
 sources/2 = SubResource("TileSetAtlasSource_qgarv")
 sources/3 = SubResource("TileSetAtlasSource_yobqo")
+sources/0 = SubResource("TileSetAtlasSource_1wgsg")
+sources/1 = SubResource("TileSetAtlasSource_ihcqn")
 pattern_0 = SubResource("TileMapPattern_t8dge")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ssfg1"]
@@ -278,7 +294,7 @@ tile_set = SubResource("TileSet_yobqo")
 
 [node name="building_layer" type="TileMapLayer" parent="map_holder"]
 texture_filter = 1
-tile_map_data = PackedByteArray("AAADAP7/AgAAAAAAAAADAP//AgAAAAEAAAAJAPn/AwAAAAAAAAAJAPr/AwAAAAEAAAA=")
+tile_map_data = PackedByteArray("AAAJAPr/AAAAAAAAAAADAP//AQAAAAAAAAA=")
 tile_set = SubResource("TileSet_r0pc2")
 
 [node name="SpawnTimer" type="Timer" parent="map_holder"]

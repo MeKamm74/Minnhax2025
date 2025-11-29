@@ -52,15 +52,20 @@ func assign_animation(target_pos: Vector2) -> void:
 	var direction_y = target_pos.y - current_pos.y
 	
 	if direction_x > 0:
-		animate.play("move_left")
-		animate.flip_h = true
-	elif direction_x < 0:
-		animate.play("move_left")
+		animate.play("move_right")
 		animate.flip_h = false
+		#animate.rotate(270)
+	elif direction_x < 0:
+		animate.play("move_right")
+		animate.flip_h = true
+		#animate.rotate(90)
 	elif direction_y > 0:
 		animate.play("move_down")
+		animate.flip_v = false
 	elif direction_y < 0:
-		animate.play("move_up")
+		animate.play("move_down")
+		animate.flip_v = true
+		#animate.rotate(180)
 	else:
 		animate.play("idle")
 
