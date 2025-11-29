@@ -1,14 +1,20 @@
 extends Node2D
 
+@export var map: Node2D
+
 @onready var enemies = []
 
 @onready var shoot_range: Area2D = $Area2D
 
 var Bullet = preload("res://bullet.tscn")
+var base_coords = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	if(map):
+		base_coords = map.get_base_coords()
+	else:
+		base_coords = self.global_position #TODO handle better while placing towers
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
@@ -24,7 +30,7 @@ func get_enemy_to_shoot():
 		if body.get_owner().is_in_group("enemies"):
 			enemies_in_range.push_back(body)
 	for enemy in enemies_in_range:
-		var enemy_dist_to_base = enemy.global_position.distance_squared_to(self.global_position)
+		var enemy_dist_to_base = enemy.global_position.distance_squared_to(base_coords)
 		if enemy_dist_to_base < shortest_dist_to_base:
 			enemy_to_shoot = enemy
 			shortest_dist_to_base = enemy_dist_to_base
