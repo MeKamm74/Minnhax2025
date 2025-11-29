@@ -4,6 +4,8 @@ extends Node2D
 
 @onready var animate: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 
+var HP = 3
+
 enum State {
 	IDLE, 
 	FOLLOW
@@ -17,7 +19,6 @@ enum Direction {
 	RIGHT
 }
 
-var _state := State.IDLE
 var _path := PackedVector2Array()
 
 func set_path_to_base(new_path: PackedVector2Array) -> void:
@@ -50,3 +51,11 @@ func assign_animation(target_pos: Vector2) -> void:
 		animate.play("move_up")
 	else:
 		animate.play("idle")
+
+func _on_area_2d_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
+	print("enemy body detected!")
+	if(area.is_in_group("bullets")):
+		HP -= 1
+		area.queue_free()
+		if(HP <= 0):
+			queue_free()
