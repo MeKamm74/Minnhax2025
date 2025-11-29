@@ -105,6 +105,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		add_child(newTower)
 		newTower.global_position = roundedPosition
 		current_towers += 1
+		Globals.remaining_towers.emit(max_towers - current_towers)
 	#elif (event.is_action_pressed("pause") and get_tree().paused == false):
 		#$"../PauseMenu".show()
 		#get_tree().paused = true
@@ -121,6 +122,7 @@ func _on_enemy_killed() -> void:
 	if kills % 5 == 0:
 		max_towers += 1
 		spawnTimer.wait_time -= 0.5
+		Globals.remaining_towers.emit(max_towers - current_towers)
 
 
 func _on_game_over_trigger_area_entered(area: Area2D) -> void:
