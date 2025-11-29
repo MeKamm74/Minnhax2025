@@ -6,13 +6,20 @@ extends Node2D
 @onready var building_layer: TileMapLayer = $building_layer
 
 @export var enemy_scene: PackedScene
+@export var max_towers = 3
 
+var current_towers = 0
+var Tower = preload("res://tower.tscn")
 var _astar = AStarGrid2D.new()
 var tile_size = Vector2i(24, 24)
 var base_coords: Vector2i
 var spawner_coords: Array[Vector2i]
 
+var kills = 0
+@onready var spawnTimer = $SpawnTimer
+
 func _ready():
+	Globals.enemyKilled.connect(_on_enemy_killed)
 	# Region should match the size of the playable area plus one (in tiles).
 	# Above is from a godot tutorial but the I am not sure why the plus one, testing w/o that currently 
 	var map_width = (base_layer.get_used_rect().size.x)
@@ -51,7 +58,7 @@ func _ready():
 				#_astar.set_point_solid(pos)
 				spawner_coords.append(pos)
 				
-	spawn_enemy()
+	#spawn_enemy()
 
 func get_path_map(start_coords, end_coords):
 	var path = _astar.get_point_path(start_coords, end_coords)
@@ -83,3 +90,30 @@ func is_point_walkable(local_position):
 	if _astar.is_in_boundsv(map_position):
 		return not _astar.is_point_solid(map_position)
 	return false
+
+func _unhandled_input(event: InputEvent) -> void:
+	if(event.is_action_pressed("create_tower") and current_towers < max_towers):
+		
+		#get rounded position
+		var clickPosition = get_global_mouse_position()
+		var roundedPosition = round_local_position(clickPosition)
+		
+		#todo: Add an terrain block to the map position, so enemies are blocked by towers
+		
+		#spawn a tower
+		var newTower = Tower.instantiate()
+		add_child(newTower)
+		newTower.global_position = roundedPosition
+		current_towers += 1
+
+
+func _on_spawn_timer_timeout() -> void:
+	spawn_enemy()
+
+
+func _on_enemy_killed() -> void:
+	kills += 1
+	print(kills)
+	if kills % 5 == 0:
+		max_towers += 1
+		spawnTimer.wait_time -= 0.5
