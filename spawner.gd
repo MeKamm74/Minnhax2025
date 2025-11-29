@@ -5,7 +5,7 @@ extends Node2D
 @onready var nw_marker = $"../NWMarker"
 @onready var sw_marker = $"../SWMarker"
 @onready var test_map = $"../../test_map_michael"
-var Enemy = preload("res://enemy.tscn")
+var Enemy = preload("res://test_map_assets/enemy.tscn")
 var list_spawn_points
 
 #func _ready():
