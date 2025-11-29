@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=21 format=4 uid="uid://5coeftq8y7uo"]
 
 [ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
 [ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://4t355ggvpvqo" path="res://awdor_city.png" id="5_qgarv"]
 [ext_resource type="PackedScene" uid="uid://bgnpjjtap6jfa" path="res://test_map_assets/enemy.tscn" id="6_r0pc2"]
 [ext_resource type="PackedScene" uid="uid://c1h1rhrb4vxif" path="res://tower.tscn" id="7_ssfg1"]
+[ext_resource type="PackedScene" uid="uid://bwk65i23xc5ad" path="res://pause_menu.tscn" id="8_gqtbx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8dge"]
 texture = ExtResource("1_4wuf8")
@@ -132,5 +133,7 @@ zoom = Vector2(3, 3)
 
 [node name="Tower" parent="." instance=ExtResource("7_ssfg1")]
 position = Vector2(204, -44)
+
+[node name="PauseMenu" parent="." instance=ExtResource("8_gqtbx")]
 
 [connection signal="timeout" from="map_holder/SpawnTimer" to="map_holder" method="_on_spawn_timer_timeout"]
