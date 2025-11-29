@@ -122,9 +122,15 @@ texture_filter = 1
 tile_map_data = PackedByteArray("AAADAP7/AgAAAAAAAAADAP//AgAAAAEAAAAJAPn/AwAAAAAAAAAJAPr/AwAAAAEAAAA=")
 tile_set = SubResource("TileSet_r0pc2")
 
+[node name="SpawnTimer" type="Timer" parent="map_holder"]
+wait_time = 3.0
+autostart = true
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(60, -50)
 zoom = Vector2(3, 3)
 
 [node name="Tower" parent="." instance=ExtResource("7_ssfg1")]
 position = Vector2(204, -44)
+
+[connection signal="timeout" from="map_holder/SpawnTimer" to="map_holder" method="_on_spawn_timer_timeout"]

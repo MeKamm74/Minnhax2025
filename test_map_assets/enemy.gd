@@ -58,3 +58,4 @@ func _on_area_2d_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_in
 		area.queue_free()
 		if(HP <= 0):
 			queue_free()
+			Globals.enemyKilled.emit()
