@@ -4,7 +4,10 @@ extends Node2D
 
 @onready var animate: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 
-var HP = 3
+@onready var health_bar: ProgressBar = $ProgressBar
+
+var max_HP = 5
+var HP = 5
 
 enum State {
 	IDLE, 
@@ -18,6 +21,14 @@ enum Direction {
 	LEFT, 
 	RIGHT
 }
+
+func _ready() -> void:
+	health_bar.max_value = max_HP
+	health_bar.min_value = 0
+	health_bar.value = max_HP
+
+func _physics_process(_delta: float) -> void:
+	health_bar.value = HP
 
 var _path := PackedVector2Array()
 
