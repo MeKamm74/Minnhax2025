@@ -105,6 +105,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		add_child(newTower)
 		newTower.global_position = roundedPosition
 		current_towers += 1
+	#elif (event.is_action_pressed("pause") and get_tree().paused == false):
+		#$"../PauseMenu".show()
+		#get_tree().paused = true
+		
 
 
 func _on_spawn_timer_timeout() -> void:
