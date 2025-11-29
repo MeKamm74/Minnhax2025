@@ -26,6 +26,7 @@ func _ready() -> void:
 	health_bar.max_value = max_HP
 	health_bar.min_value = 0
 	health_bar.value = max_HP
+	$Area2D.add_to_group("enemyArea")
 
 func _physics_process(_delta: float) -> void:
 	health_bar.value = HP
