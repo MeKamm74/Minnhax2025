@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgnpjjtap6jfa"]
+[gd_scene load_steps=15 format=3 uid="uid://bgnpjjtap6jfa"]
 
 [ext_resource type="Script" uid="uid://2yrg7lnq21ay" path="res://test_map_assets/enemy.gd" id="1_4mj1p"]
 [ext_resource type="Texture2D" uid="uid://b0j1h3mqydlc7" path="res://Sprites/buggo1_png/Buggo-1.png" id="2_sqd2f"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bt8k460m3pggf" path="res://Sprites/buggoright1_png/BuggoRight-1.png" id="5_8g56b"]
 [ext_resource type="Texture2D" uid="uid://dwiwbcf7hw243" path="res://Sprites/buggoright1_png/BuggoRight-2.png" id="6_g4ht5"]
 [ext_resource type="Texture2D" uid="uid://tve4esjiapq7" path="res://Sprites/buggoright1_png/BuggoRight-3.png" id="7_w80j1"]
+[ext_resource type="AudioStream" uid="uid://dex0djmt02lv6" path="res://Sound/Pop.mp3" id="9_txqpm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_synnp"]
 animations = [{
@@ -99,5 +100,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_gavqw")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sqd2f")
 rounded = true
 show_percentage = false
+
+[node name="HitAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_txqpm")
+max_polyphony = 2
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

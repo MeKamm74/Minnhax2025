@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1h1rhrb4vxif"]
+[gd_scene load_steps=5 format=3 uid="uid://c1h1rhrb4vxif"]
 
 [ext_resource type="Script" uid="uid://dvbo8l2xkeimt" path="res://tower.gd" id="1_vedim"]
 [ext_resource type="Texture2D" uid="uid://b0bcyt8klcief" path="res://Sprites/Tower.png" id="2_vedim"]
+[ext_resource type="AudioStream" uid="uid://jvpfuq2e37cx" path="res://Sound/Pew.mp3" id="3_stebd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vedim"]
 radius = 84.21401
@@ -19,6 +20,10 @@ autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_vedim")
+
+[node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_stebd")
+volume_db = -6.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

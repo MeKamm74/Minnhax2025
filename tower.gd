@@ -5,6 +5,7 @@ extends Node2D
 @onready var enemies = []
 
 @onready var shoot_range: Area2D = $Area2D
+@onready var audio_player = $ShootAudio
 
 var Bullet = preload("res://bullet.tscn")
 var base_coords = null
@@ -43,6 +44,7 @@ func shoot(enemy):
 	bullet.add_to_group("bullets")
 	add_child(bullet)
 	bullet.global_position = global_position
+	audio_player.play()
 
 func _on_shoot_timer_timeout() -> void:
 	var enemy = await get_enemy_to_shoot()

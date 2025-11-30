@@ -6,6 +6,8 @@ extends Node2D
 
 @onready var health_bar: ProgressBar = $ProgressBar
 
+@onready var hit_audio = $HitAudio
+
 var max_HP = 5
 var HP = 5
 
@@ -71,8 +73,10 @@ func assign_animation(target_pos: Vector2) -> void:
 
 func _on_area_2d_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_index: int, _local_shape_index: int) -> void:
 	if(area.is_in_group("bullets")):
+		hit_audio.play()
 		HP -= 1
 		area.queue_free()
 		if(HP <= 0):
 			queue_free()
 			Globals.enemyKilled.emit()
+			
