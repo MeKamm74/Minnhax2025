@@ -104,12 +104,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		#todo: Add an terrain block to the map position, so enemies are blocked by towers
 		
-		#spawn a tower
-		var newTower = Tower.instantiate()
-		add_child(newTower)
-		newTower.global_position = roundedPosition
-		current_towers += 1
-		Globals.remaining_towers.emit(max_towers - current_towers)
+		var map_coords = terrain_layer.local_to_map(roundedPosition)
+		var cell_data = terrain_layer.get_cell_tile_data(map_coords)
+		if cell_data && cell_data.get_custom_data("Obstacle"):
+			#spawn a tower
+			var newTower = Tower.instantiate()
+			add_child(newTower)
+			newTower.global_position = roundedPosition
+			current_towers += 1
+			Globals.remaining_towers.emit(max_towers - current_towers)
 
 
 func _on_spawn_timer_timeout() -> void:
