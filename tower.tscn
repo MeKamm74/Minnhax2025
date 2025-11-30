@@ -23,7 +23,7 @@ shape = SubResource("CircleShape2D_vedim")
 
 [node name="ShootAudio" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_stebd")
-volume_db = -6.0
+volume_db = -9.0
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

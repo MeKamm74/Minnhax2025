@@ -1,6 +1,6 @@
 extends Control
 
-@onready var label: Label = $PanelContainer/VBoxContainer/EnemiesKilledLabel
+@onready var label: Label = $PanelContainer/MarginContainer/VBoxContainer/EnemiesKilledLabel
 
 var enemies = 0
 

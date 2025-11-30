@@ -1,9 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://h76i8cdke3c8"]
+[gd_scene load_steps=9 format=3 uid="uid://h76i8cdke3c8"]
 
 [ext_resource type="Script" uid="uid://buootgh5e6r5v" path="res://main_menu.gd" id="1_06t4h"]
+[ext_resource type="Texture2D" uid="uid://bmafdjikaee8d" path="res://Sprites/jeffmmax1_png/JeffmMax-1.png" id="2_jix8l"]
+[ext_resource type="Texture2D" uid="uid://bj6kji8hyfwnw" path="res://Sprites/jeffmmax1_png/JeffmMax-2.png" id="3_glbon"]
+[ext_resource type="Texture2D" uid="uid://6ilwd1q3qfg3" path="res://Sprites/jeffmmax1_png/JeffmMax-3.png" id="4_nlkkf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qe12f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jix8l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_glbon")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nlkkf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_glbon")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_06t4h"]
 font_size = 48
+
+[sub_resource type="LabelSettings" id="LabelSettings_7vrkn"]
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_8qtwp"]
+font_size = 25
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -14,29 +43,78 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_06t4h")
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="AnimatedJeffMSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(1472, 517)
+scale = Vector2(31.793163, 31.793163)
+sprite_frames = SubResource("SpriteFrames_qe12f")
+
+[node name="CenterContainer" type="BoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 700.0
+offset_bottom = 530.0
+scale = Vector2(1.5283079, 1.5283079)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Defend the Max!"
 label_settings = SubResource("LabelSettings_06t4h")
+horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Start"
 
-[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer"]
+[node name="ExitButton" type="Button" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Instructions:
+
+Defend JeffM's Fortress!
+
+- Place Towers on Mountains
+- Every five defeated enemies, you get another tower
+- Enemies get more numerous, and then faster
+- Survive!"
+label_settings = SubResource("LabelSettings_7vrkn")
+
+[node name="MarginContainer3" type="MarginContainer" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 66
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+text = "A game by shenaniganmike and Robot_Arms"
+label_settings = SubResource("LabelSettings_8qtwp")
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
