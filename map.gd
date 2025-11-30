@@ -18,6 +18,9 @@ var spawner_coords: Array[Vector2i]
 var kills = 0
 @onready var spawnTimer = $SpawnTimer
 
+@onready var defeated_audio = $DefeatedAudio
+@onready var spawn_audio = $SpawnAudio
+
 func _ready():
 	Globals.enemyKilled.connect(_on_enemy_killed)
 	# Region should match the size of the playable area plus one (in tiles).
@@ -76,6 +79,7 @@ func spawn_enemy() -> void:
 	var new_enemy = enemy_scene.instantiate()
 	if(spawner_coords.size() > 0):
 		#enemy's ready function is called after add_child
+		spawn_audio.play()
 		var spawner_pos = building_layer.map_to_local(spawner_coords[0])
 		add_child(new_enemy)
 		new_enemy.add_to_group("enemies")
@@ -117,8 +121,8 @@ func _on_spawn_timer_timeout() -> void:
 
 
 func _on_enemy_killed() -> void:
+	defeated_audio.play()
 	kills += 1
-	print(kills)
 	if kills % 5 == 0:
 		max_towers += 1
 		spawnTimer.wait_time -= 0.5

@@ -5,7 +5,7 @@ extends Node2D
 @onready var enemies = []
 
 @onready var shoot_range: Area2D = $Area2D
-@onready var audio_player = $AudioStreamPlayer2D
+@onready var audio_player = $ShootAudio
 
 var Bullet = preload("res://bullet.tscn")
 var base_coords = null
