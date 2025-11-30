@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cppax0pwavgn8"
-path="res://.godot/imported/awdor_infantry.png-881d4642b6297ce10755412f49f49b67.ctex"
+uid="uid://biq6ihtg0jiwl"
+path="res://.godot/imported/original_plains.png-5a4e6d20941b440450da3ee7c87bf04c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://test_map_assets/awdor_infantry.png"
-dest_files=["res://.godot/imported/awdor_infantry.png-881d4642b6297ce10755412f49f49b67.ctex"]
+source_file="res://original_plains.png"
+dest_files=["res://.godot/imported/original_plains.png-5a4e6d20941b440450da3ee7c87bf04c.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4t355ggvpvqo"
-path="res://.godot/imported/awdor_city.png-a02a4d34a86628193b1e5ab3ef18d587.ctex"
+uid="uid://cfenxr7a4x3y7"
+path="res://.godot/imported/original_mountains.png-5573ab1ab129564117b8acbbcad3de6d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://awdor_city.png"
-dest_files=["res://.godot/imported/awdor_city.png-a02a4d34a86628193b1e5ab3ef18d587.ctex"]
+source_file="res://original_mountains.png"
+dest_files=["res://.godot/imported/original_mountains.png-5573ab1ab129564117b8acbbcad3de6d.ctex"]
 
 [params]
 
