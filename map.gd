@@ -127,8 +127,8 @@ func _on_enemy_killed() -> void:
 		if spawnTimer.wait_time > 0.5:
 			spawnTimer.wait_time -= 0.5
 		else:
-			move_speed -= 0.05
-			Globals.speedUpEnemies.emit(move_speed)
+			Globals.enemySpeed -= 0.01
+			Globals.speedUpEnemies.emit()
 		Globals.remaining_towers.emit(max_towers - current_towers)
 
 
