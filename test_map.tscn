@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://5coeftq8y7uo"]
+[gd_scene load_steps=31 format=4 uid="uid://5coeftq8y7uo"]
 
 [ext_resource type="Texture2D" uid="uid://bu5pirijx0q5h" path="res://awdor_plains.png" id="1_4wuf8"]
 [ext_resource type="Script" uid="uid://bluntvvp4ts82" path="res://map.gd" id="1_s02eq"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://defiek2tefue8" path="res://game_over_menu.tscn" id="8_bu3ac"]
 [ext_resource type="PackedScene" uid="uid://bwk65i23xc5ad" path="res://pause_menu.tscn" id="8_gqtbx"]
 [ext_resource type="Script" uid="uid://d3p15sv5lykwc" path="res://HUD.gd" id="9_bu3ac"]
+[ext_resource type="AudioStream" uid="uid://dqq6mgj6jl8jd" path="res://Sound/DefendTheMax.mp3" id="12_dj26u"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_t8dge"]
 texture = ExtResource("1_4wuf8")
@@ -331,6 +332,10 @@ theme = SubResource("Theme_5354r")
 text = "Defeated Enemies: 
 Placeable Towers:"
 label_settings = SubResource("LabelSettings_dj26u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_dj26u")
+autoplay = true
 
 [connection signal="timeout" from="map_holder/SpawnTimer" to="map_holder" method="_on_spawn_timer_timeout"]
 [connection signal="area_entered" from="GameOverTrigger" to="map_holder" method="_on_game_over_trigger_area_entered"]
