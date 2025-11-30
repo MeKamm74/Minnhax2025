@@ -29,6 +29,7 @@ func _ready() -> void:
 	health_bar.min_value = 0
 	health_bar.value = max_HP
 	$Area2D.add_to_group("enemyArea")
+	Globals.speedUpEnemies.connect(_on_speed_up_enemies)
 
 func _physics_process(_delta: float) -> void:
 	health_bar.value = HP
@@ -79,4 +80,6 @@ func _on_area_2d_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_in
 		if(HP <= 0):
 			queue_free()
 			Globals.enemyKilled.emit()
-			
+
+func _on_speed_up_enemies(speed: float):
+	_moveSpeed = speed
