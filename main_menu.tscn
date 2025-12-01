@@ -70,7 +70,7 @@ alignment = 1
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Defend the Max!"
+text = "Defense of Bug Canyon"
 label_settings = SubResource("LabelSettings_06t4h")
 horizontal_alignment = 1
 

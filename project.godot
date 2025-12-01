@@ -10,10 +10,12 @@ config_version=5
 
 [application]
 
-config/name="Minnhax2025"
+config/name="Defense of Bug Canyon"
+config/description="A tower defense game where you must protect JeffM's fortress from the bugs."
 run/main_scene="uid://h76i8cdke3c8"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://bj6kji8hyfwnw"
+config/icon="uid://bj6kji8hyfwnw"
 
 [autoload]
 
