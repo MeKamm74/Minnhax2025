@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var _moveSpeed := 0.8
+@export var _moveSpeed := Globals.enemySpeed
 
 @onready var animate: AnimatedSprite2D = $CharacterBody2D/AnimatedSprite2D
 
@@ -81,5 +81,5 @@ func _on_area_2d_area_shape_entered(_area_rid: RID, area: Area2D, _area_shape_in
 			queue_free()
 			Globals.enemyKilled.emit()
 
-func _on_speed_up_enemies(speed: float):
-	_moveSpeed = speed
+func _on_speed_up_enemies():
+	_moveSpeed = Globals.enemySpeed
